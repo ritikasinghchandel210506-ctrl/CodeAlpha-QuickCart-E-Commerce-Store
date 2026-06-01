@@ -1,0 +1,119 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<h2>Login</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button>Login</button>
+</form>
+
+{% endblock %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+}
+
+/* Login Container */
+form{
+    width:400px;
+    padding:35px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#38bdf8;
+    font-size:2rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* Django form fields */
+form p{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#e2e8f0;
+    font-weight:500;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border:1px solid #38bdf8;
+    box-shadow:0 0 10px rgba(56,189,248,0.5);
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#38bdf8;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#0284c7;
+    transform:translateY(-2px);
+}
+
+.helptext,
+ul.errorlist{
+    color:#f87171;
+    font-size:14px;
+    list-style:none;
+    margin-top:5px;
+}
+
+@media(max-width:500px){
+    form{
+        width:90%;
+        padding:25px;
+    }
+
+    h2{
+        font-size:1.6rem;
+    }
+}
+</style>

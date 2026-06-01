@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    color:#f8fafc;
+    min-height:100vh;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    padding:18px 40px;
+    background:rgba(15,23,42,0.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+nav a{
+    text-decoration:none;
+    color:#e2e8f0;
+    font-weight:500;
+    padding:10px 18px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:#38bdf8;
+    color:white;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+h1,h2,h3{
+    color:#38bdf8;
+}
+
+h2{
+    text-align:center;
+    margin:30px 0;
+    font-size:2rem;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:30px 0;
+}
+
+/* =========================
+   PRODUCT CARDS
+========================= */
+
+.card{
+    display:inline-block;
+    width:320px;
+    margin:15px;
+    padding:25px;
+    vertical-align:top;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+    transition:0.4s ease;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(56,189,248,0.2);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#22c55e;
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+/* =========================
+   BUTTONS & LINKS
+========================= */
+
+button,
+.btn,
+.card a{
+    display:inline-block;
+    text-decoration:none;
+    border:none;
+
+    padding:12px 20px;
+    margin:5px;
+
+    border-radius:10px;
+    cursor:pointer;
+
+    background:#38bdf8;
+    color:white;
+    font-weight:500;
+
+    transition:0.3s;
+}
+
+button:hover,
+.btn:hover,
+.card a:hover{
+    background:#0284c7;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   FORMS
+========================= */
+
+form{
+    max-width:500px;
+    margin:40px auto;
+    padding:30px;
+
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(15px);
+
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+form p{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#e2e8f0;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+
+    border:none;
+    outline:none;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,0.12);
+    color:white;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border:1px solid #38bdf8;
+    box-shadow:0 0 10px rgba(56,189,248,0.4);
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+img{
+    max-width:100%;
+    border-radius:15px;
+}
+
+/* =========================
+   PRODUCT DETAIL
+========================= */
+
+.product-container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:30px;
+
+    display:flex;
+    gap:40px;
+    align-items:center;
+
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+}
+
+.product-info{
+    flex:1;
+}
+
+.price{
+    color:#22c55e;
+    font-size:2rem;
+    font-weight:700;
+    margin:20px 0;
+}
+
+/* =========================
+   SUCCESS / CHECKOUT CARD
+========================= */
+
+.success-card{
+    max-width:600px;
+    margin:60px auto;
+    text-align:center;
+
+    padding:40px;
+
+    background:rgba(255,255,255,0.08);
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   TABLES (CART)
+========================= */
+
+table{
+    width:90%;
+    margin:30px auto;
+
+    border-collapse:collapse;
+
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+    overflow:hidden;
+}
+
+th{
+    background:#38bdf8;
+    color:white;
+}
+
+th,
+td{
+    padding:15px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:rgba(255,255,255,0.04);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+    color:#cbd5e1;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#1e293b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#38bdf8;
+    border-radius:10px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    nav{
+        flex-wrap:wrap;
+        gap:10px;
+        padding:15px;
+    }
+
+    .card{
+        width:100%;
+        margin:15px 0;
+    }
+
+    .product-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    form{
+        width:90%;
+    }
+
+    table{
+        width:100%;
+    }
+
+    h2{
+        font-size:1.7rem;
+    }
+}
