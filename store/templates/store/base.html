@@ -4,21 +4,28 @@
     <title>QuickCart</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'store/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <nav>
-    <a href="/">Home</a>
-    <a href="/cart/">Cart</a>
-
-    {% if user.is_authenticated %}
-        <a href="/logout/">Logout</a>
-    {% else %}
-        <a href="/login/">Login</a>
-        <a href="/register/">Register</a>
-    {% endif %}
-</nav>
+    <div class="logo">QuickCart</div>
     
+    <div class="nav-links">
+        <a href="/" class="active">Home</a>
+        <a href="/cart/">Cart</a>
+    </div>
+
+    <div class="nav-auth">
+        {% if user.is_authenticated %}
+            <a href="/logout/" class="auth-link">Logout</a>
+        {% else %}
+            <a href="/login/" class="auth-link">Login</a>
+            <a href="/register/" class="auth-btn">Register</a>
+        {% endif %}
+    </div>
+</nav>
+
 {% block content %}
 {% endblock %}
 
