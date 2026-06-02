@@ -1,11 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, logout
 from .models import Product, Order, OrderItem
 from .forms import RegisterForm
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.shortcuts import redirect
 
-cart = []
 
 def home(request):
     products = Product.objects.all()
@@ -18,49 +15,114 @@ def product_detail(request, pk):
 
 
 def add_to_cart(request, pk):
-    cart.append(pk)
+    cart = request.session.get("cart", {})
+    if isinstance(cart, list):
+        cart = {}
+    pk = str(pk)
+
+    if pk in cart:
+        cart[pk] = int(cart[pk]) + 1
+    else:
+        cart[pk] = 1
+
+    request.session["cart"] = cart
+    request.session.modified = True
     return redirect("cart")
 
+
+def decrease_quantity(request, pk):
+    cart = request.session.get("cart", {})
+    pk = str(pk)
+
+    if pk in cart:
+        cart[pk] = int(cart[pk]) - 1
+        if cart[pk] <= 0:
+            del cart[pk]
+
+    request.session["cart"] = cart
+    request.session.modified = True
+    return redirect("cart")
+
+
 def remove_from_cart(request, pk):
-    cart = request.session.get('cart', [])
+    cart = request.session.get("cart", {})
+    pk = str(pk)
 
-    if str(pk) in cart:
-        cart.remove(str(pk))
+    if pk in cart:
+        del cart[pk]
 
-    request.session['cart'] = cart
+    request.session["cart"] = cart
+    request.session.modified = True
+    return redirect("cart")
 
-    return redirect('cart')
 
 def cart_view(request):
-    products = Product.objects.filter(id__in=cart)
-    return render(request, "store/cart.html", {"products": products})
+    cart = request.session.get("cart", {})
+
+    items = []
+    total = 0
+
+    for product_id, quantity in cart.items():
+
+        product = Product.objects.get(id=product_id)
+
+        subtotal = product.price * quantity
+
+        items.append({
+            "product": product,
+            "quantity": quantity,
+            "subtotal": subtotal
+        })
+
+        total += subtotal
+
+    return render(
+        request,
+        "store/cart.html",
+        {
+            "items": items,
+            "total": total
+        }
+    )
 
 
 def checkout(request):
+
+    cart = request.session.get("cart", {})
+
+    if not cart:
+        return redirect("cart")
+
     if request.user.is_authenticated:
+
         order = Order.objects.create(user=request.user)
 
-        for item in cart:
-            product = Product.objects.get(id=item)
-            OrderItem.objects.create(order=order, product=product)
+        for product_id, quantity in cart.items():
 
-        cart.clear()
+            product = Product.objects.get(id=product_id)
+
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                quantity=quantity
+            )
+
+        request.session["cart"] = {}
 
     return render(request, "store/checkout.html")
-
 
 def register(request):
     form = RegisterForm()
 
     if request.method == "POST":
         form = RegisterForm(request.POST)
-
         if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect("/")
 
     return render(request, "store/register.html", {"form": form})
+
 
 def logout_user(request):
     logout(request)
